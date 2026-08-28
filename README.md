@@ -1,244 +1,147 @@
 # Detrix
 
-> Personal portfolio showcasing professional works, innovations, speaker experiences, and academic contributions.
-
-[![License](https://img.shields.io/badge/license-MIT-blue?logo=opensourceinitiative&logoColor=ffffff)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/suradet-ps/detrix?color=blue&logo=git&logoColor=ffffff)](https://github.com/suradet-ps/detrix/commits/main)
-[![TypeScript](https://img.shields.io/badge/TypeScript-%5E5-3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/)
-[![Svelte](https://img.shields.io/badge/Svelte-%5E5-FF3E00?logo=svelte&logoColor=ffffff)](https://svelte.dev/)
-[![SvelteKit](https://img.shields.io/badge/SvelteKit-%5E2-FF3E00?logo=svelte&logoColor=ffffff)](https://kit.svelte.dev/)
-[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=ffffff)](https://supabase.com/)
-[![Bun](https://img.shields.io/badge/Bun-1.3.14-f9f1e1?logo=bun&logoColor=ffffff)](https://bun.sh/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?logo=github&logoColor=ffffff)](https://github.com/suradet-ps/detrix/pulls)
-
----
-
-**Detrix** is a modern, server-side-rendered portfolio application for healthcare professionals. Portfolio items are fetched from a **Supabase** backend and dynamically grouped by category, with a key-protected route for adding new entries. Built with Svelte 5 runes, SvelteKit 2, and strict TypeScript.
-
----
-
-## Features
-
-- **Dynamic content** — portfolio items fetched from Supabase; no redeploy needed for updates.
-- **Categorized view** — items automatically grouped by category (Speaker, Academic Work, Innovation, etc.).
-- **Detail modal** — click any item to open an accessible, keyboard-navigable modal with full details.
-- **Key-protected submission** — secure `/add` route verifies a secret key **server-side** (no client-side secrets).
-- **Notification system** — accessible toast notifications replace `alert()` for all user feedback.
-- **Scroll-reveal animations** — Intersection Observer-based reveal on category sections.
-- **Mobile-first responsive** — optimized for all screen sizes with hamburger navigation.
-- **Dark-mode ready** — CSS custom properties architecture; theme can be toggled via `prefers-color-scheme`.
-- **Fully accessible** — keyboard navigation, focus traps, ARIA attributes, screen-reader support.
-- **SSR-safe architecture** — no `window`/`document` access during server rendering.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| **Language** | [TypeScript 5](https://www.typescriptlang.org/) (strict mode, no unchecked access) |
-| **Framework** | [Svelte 5](https://svelte.dev/) (runes API: $state, $derived, $effect) |
-| **Meta-framework** | [SvelteKit 2](https://kit.svelte.dev/) (file-based routing, layout system) |
-| **Build tool** | [Vite 8](https://vite.dev/) (via SvelteKit) |
-| **Backend** | [Supabase](https://supabase.com/) (PostgreSQL, REST API, anon key) |
-| **Package manager** | [Bun](https://bun.sh/) |
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- [Bun](https://bun.sh/) v1.1+
-
-### Install
-
-```bash
-git clone https://github.com/suradet-ps/detrix.git
-cd detrix
-bun install
+```
+██████╗ ███████╗████████╗██████╗ ██╗██╗  ██╗
+██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║╚██╗██╔╝
+██║  ██║█████╗     ██║   ██████╔╝██║ ╚███╔╝
+██║  ██║██╔══╝     ██║   ██╔══██╗██║ ███╔╝
+██████╔╝███████╗   ██║   ██║  ██║██║██╔██╗
+╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝ ╚═╝
 ```
 
-### Environment Variables
+---
 
-Create a `.env` file in the project root:
+## ◆ PULSE
 
-```env
+A portfolio is a living document, not a static page. Detrix presents the
+professional record of a healthcare technologist - works, innovations,
+speaking, and academic contributions - fetched from Supabase and grouped
+by category, so the story updates without a redeploy. The page reads
+quiet and editorial: white canvas, dark ink, signature color bands that
+punctuate the scroll, nothing fighting for attention until a section
+needs to.
+
+| Works ▣ | Innovation ▣ | Speaker ▣ | Academic ▣ |
+|---|---|---|---|
+
+*The record is content, not markup: add an entry through the key-protected
+route and the page tells it.*
+
+> Built with Svelte 5 runes + SvelteKit 2, strict TypeScript with zero
+> `any`, rendered on the server, served through Supabase.
+>
+> **suradet-ps**, artifact keeper
+
+---
+
+## ◆ IGNITION
+
+One runtime, four commands.
+
+```
+⟫ bun install
+⟫ bun run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173).
+
+```
+⟫ bun run build       # SSR + client bundle
+⟫ bun run check       # svelte-check, strict types
+```
+
+<details>
+<summary>Environment</summary>
+
+A `.env` file with three keys:
+
+```
 PUBLIC_SUPABASE_URL="https://your-project.supabase.co"
 PUBLIC_SUPABASE_ANON_KEY="your-anon-key"
 SECRET_ADD_POST_KEY="your-secret-key"
 ```
 
-> `SECRET_ADD_POST_KEY` is only accessed **server-side** via `$env/static/private` — never exposed to the client.
+`SECRET_ADD_POST_KEY` is read only server-side via `$env/static/private` -
+never shipped to the client.
 
-### Development
-
-```bash
-bun run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173).
-
-### Production Build
-
-```bash
-bun run build      # svelte-kit sync + Vite build (SSR + client)
-bun run preview    # preview the production bundle
-```
-
-### Quality Checks
-
-```bash
-bun run check      # svelte-kit sync + svelte-check (type + Svelte diagnostics)
-```
+</details>
 
 ---
 
-## Project Structure
+## ◆ ANATOMY
+
+One page, three layers, no shared secrets.
+
+- **Serves** - SvelteKit renders on the server: no `window` or
+  `document` in the SSR path, Supabase queries run in the load function,
+  not in components.
+- **Groups** - portfolio items fetched once, grouped by category
+  (Speaker, Academic Work, Innovation, and the rest), and revealed on
+  scroll through an Intersection Observer - the motion is a layer on top
+  of content that already exists.
+- **Guards** - the `/add` route verifies a secret key server-side, with
+  CSRF origin checks, IP rate limiting (30 req/min), input validation,
+  and security headers on every response. No client-side secrets exist
+  to leak.
+- **Talks** - toasts replace `alert()`, a focus-trapped modal holds the
+  detail view, and every interactive element answers to the keyboard -
+  the page is readable by humans and by assistive technology alike.
+- **Wears** - one design system in `DESIGN.md`: tokens.css owns spacing,
+  typography, and color; dark mode is a `prefers-color-scheme` toggle
+  away, never a fork of the markup.
+
+---
+
+## ◆ RITUALS
+
+**The core ceremony** - the daily add:
+
+1. Open the key-protected route, enter the secret.
+2. Fill the form: category, title, dates, description. The server
+   validates category against a whitelist, lengths against limits, dates
+   against a format.
+3. Submit. A toast confirms or reports - no `alert()`, no silent
+   failure.
+4. Refresh the page. The new entry is grouped, revealed, and told.
+
+**The ceremony of access** - every card opens into a keyboard-navigable
+modal with a focus trap and an Escape exit; focus returns where it
+started. Notifications speak through `aria-live`, errors through
+`role="alert"`.
+
+**The ceremony of restraint** - reduced motion is respected, scroll
+reveals yield, and the whitespace does the selling. The brand voltage
+comes from signature color bands every few screens, not from gradient
+washes.
+
+---
+
+## ◆ ECHOES
+
+**Where this artifact is heading**
 
 ```
-src/
-├── lib/
-│   ├── components/
-│   │   ├── Navigation.svelte          # Responsive nav with hamburger menu
-│   │   ├── Modal.svelte               # Accessible modal with focus trap
-│   │   ├── Notification.svelte        # Toast notification system
-│   │   ├── Hero.svelte                # Hero section with metrics grid
-│   │   ├── SectionReveal.svelte       # Scroll-reveal animation wrapper
-│   │   ├── EditorialSection.svelte    # Editorial content section shell
-│   │   ├── SignatureSection.svelte    # Branded signature card section
-│   │   ├── ProjectFeatured.svelte     # Featured/flagship project card
-│   │   ├── ProjectCard.svelte         # Project card (clickable -> modal)
-│   │   ├── SpeakerSection.svelte      # Speaker experience grid
-│   │   ├── AcademicSection.svelte     # Academic contributions list
-│   │   ├── InnovationSection.svelte   # Healthcare innovations grid
-│   │   ├── Timeline.svelte            # Career timeline component
-│   │   ├── TestimonialSection.svelte  # Recognition/testimonial grid
-│   │   ├── CTABand.svelte             # Call-to-action band (dark)
-│   │   ├── MetricsGrid.svelte         # Stats/metrics display grid
-│   │   └── Footer.svelte              # Site footer
-│   ├── stores/
-│   │   └── notification.svelte.ts     # Rune-based notification store
-│   ├── styles/
-│   │   ├── tokens.css                 # Design tokens (spacing, typography, colors)
-│   │   └── global.css                 # CSS reset + base styles
-│   ├── supabase/
-│   │   └── client.ts                  # Singleton Supabase client (SSR-safe)
-│   ├── types/
-│   │   └── portfolio.ts               # Database models & types
-│   └── utils/
-│       ├── date.ts                    # Date formatting utilities
-│       └── focusTrap.ts               # Focus trap Svelte action
-├── routes/
-│   ├── +layout.svelte                 # App shell (Navigation + Notification + Footer)
-│   ├── +error.svelte                  # Global error page (404, 500, etc.)
-│   ├── +page.svelte                   # Portfolio listing page
-│   ├── +page.ts                       # Universal load: fetch + group items
-│   ├── add/
-│   │   ├── +page.svelte               # Add-portfolio form
-│   │   └── +page.server.ts            # Server action: secret-key verification + insert
-│   └── api/
-│       ├── portfolio/
-│       │   └── +server.ts             # REST endpoint for portfolio creation
-│       └── health/
-│           └── +server.ts             # Health check endpoint
-├── hooks.server.ts                    # Security headers, rate limiting, CSRF, logging
-├── app.html                           # HTML shell
-└── app.d.ts                           # SvelteKit type declarations
+content   ▸ Supabase-backed items, no redeploy for updates ──────── ▸ sealed
+guards    ▸ server-side key, CSRF, rate limits, security headers ── ▸ sealed
+access    ▸ keyboard-first, focus traps, ARIA, reduced motion ───── ▸ sealed
+delivery  ▸ adapter-vercel, SSR + client bundle ──────────────────── ▸ sealed
 ```
 
----
+**Raising the artifact** - contributions follow conventional commits and
+open a pull request first. The design language is specified in
+`DESIGN.md`; the code keeps strict TypeScript, zero `any`, and no
+unchecked access.
 
-## Svelte 5 Architecture
-
-This project uses Svelte 5 **runes** exclusively — no legacy `export let`, no `on:click`, no stores for component state:
-
-- **`$state()`** — local reactive state (`isModalOpen`, `selectedItem`, `isSubmitting`)
-- **`$derived()`** — computed values (`items`, `grouped` from page data)
-- **`$effect()`** — side effects (body scroll lock when modal opens)
-- **`$props()`** — typed component props (`item: PortfolioItem`, `onclose: () => void`)
-- **`{@render children()}`** — layout slot pattern in `+layout.svelte`
-- **`use:action`** — DOM interactions (`focusTrap`, `scrollReveal`)
-
-Key architectural decisions:
-
-- **No global stores for page state** — notification is the only rune-based store (truly global concern)
-- **Data fetching in `+page.ts`** — Supabase queries run in the load function, not in components
-- **Server-only authorization** — secret key validation in `+page.server.ts` form actions
-- **Progressive enhancement** — form uses `use:enhance` for JS-enabled clients, falls back to server actions
+**Status** - every push is checked by the [CI workflow](.github/workflows)
+on its way to Vercel.
 
 ---
-
-## TypeScript Architecture
-
-- **`strict: true`** — all strict checks enabled
-- **Zero `any` types** — no type assertions, no `@ts-ignore`
-- **`verbatimModuleSyntax`** — enforces `import type` for type-only imports
-- **Full model typing** — `PortfolioItem`, `PortfolioItemInput`, `PortfolioFormData`, `FormErrors`, `ApiResponse`, `Notification`
-- **Service layer isolation** — components never call Supabase directly
-
----
-
-## Security
-
-- **Server-side key verification** — `SECRET_ADD_POST_KEY` is checked in `+page.server.ts` and `+server.ts` only, via `$env/static/private`
-- **No client-side secrets** — server-only env vars use `$env/static/private`; never exposed to the client bundle
-- **Supabase anon key** — safe for client use with Row-Level Security; read-only queries in load functions
-- **Environment validation** — `client.ts` throws at runtime if required vars are missing
-- **CSRF protection** — origin/host validation on all write methods in `hooks.server.ts`
-- **Rate limiting** — IP-based (30 req/min) on all POST/PUT/PATCH/DELETE requests
-- **Security headers** — CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy
-- **Input validation** — server-side length limits, category whitelist, date format validation
-
----
-
-## Accessibility
-
-| Feature | Implementation |
-|---------|---------------|
-| **Keyboard navigation** | All interactive elements reachable via Tab |
-| **Focus trap** | Modal cycles focus; restores previous focus on close |
-| **Escape key** | Closes modal; closes mobile menu |
-| **ARIA** | `dialog`, `aria-modal`, `aria-labelledby`, `aria-expanded`, `aria-controls`, `aria-invalid`, `aria-describedby` |
-| **Live regions** | `aria-live="polite"` for notifications, `role="alert"` for errors |
-| **Reduced motion** | `prefers-reduced-motion` media query disables animations |
-| **Focus visibility** | `focus-visible` outlines on all interactive elements |
-
----
-
-## Deployment
-
-The app can be deployed to any platform supported by `@sveltejs/adapter-auto` (Vercel, Netlify, Cloudflare Pages, etc.):
-
-```bash
-bun run build
-```
-
-The output is in `.svelte-kit/output/`. Configure your platform's adapter in `svelte.config.js` for production deployment.
-
----
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feat/my-feature`
-3. Commit using [conventional commits](https://www.conventionalcommits.org/)
-4. Push to your branch: `git push origin feat/my-feature`
-5. Open a pull request
-
-### Commit Convention
 
 ```
-feat: add new category filter
-fix: correct date formatting for empty end_date
-refactor: extract grouping logic into service
-chore(deps): update svelte to v5.56
+  ─────────────────────────────────────────
+   A portfolio is not a resume.
+   It is a body of work that keeps speaking.
+  ─────────────────────────────────────────
 ```
 
----
-
-## License
-
-Distributed under the MIT License.
+Distributed under the [MIT License](LICENSE).
